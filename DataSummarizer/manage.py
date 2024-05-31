@@ -16,7 +16,7 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     port = os.environ.get('PORT', '8000')
-    execute_from_command_line([sys.argv[0], 'runserver', '127.0.0.1:' + port])
+    execute_from_command_line([sys.argv[0], 'runserver', '0.0.0.0:' + port])
     # execute_from_command_line([sys.argv[0]])
 
 
