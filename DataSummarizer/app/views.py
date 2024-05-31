@@ -10,6 +10,7 @@ def home(request):
 
 
 def upload_files(request):
+    print("inside upload files function")
     if request.method == 'POST' and request.FILES['file']:
         data = []
         uploaded_files = request.FILES.getlist('file')
@@ -27,15 +28,14 @@ def upload_files(request):
                 dpd_counts.to_excel('Summary.xlsx', index=False, sheet_name='Sheet1')
 
         output_path = 'Summary.xlsx'
-        df.to_excel(output_path, index=False)
+        # df.to_excel(output_path, index=False)
 
         # Serve the Excel file as a download
         with open(output_path, 'rb') as file:
-            response = HttpResponse(file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            response = HttpResponse(file, content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             response['Content-Disposition'] = 'attachment; filename=Summary.xlsx'
             return response
     return render(request, 'your_template.html')
-
 
 def dpd_counts(file):
     df = pd.read_csv(file)
