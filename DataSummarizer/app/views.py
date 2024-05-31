@@ -8,6 +8,7 @@ from django.http import HttpResponse
 def home(request):
     return render( request, "home.html")
 
+
 def upload_files(request):
     if request.method == 'POST' and request.FILES['file']:
         data = []
